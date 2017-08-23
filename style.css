@@ -1,0 +1,172 @@
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+
+h1,h2,h3 {
+  font-weight: 600;
+  margin: 1.5em auto 0.5em;
+}
+h1 {
+  font-size: 22px;
+  text-align: center;
+}
+h2 {
+  font-size: 18px;
+}
+h3 {
+  font-size: 16px;
+  color: #556;
+}
+h3,p,ul {
+  margin: 0.5em auto;
+}
+
+a {
+  color: #112;
+  text-decoration: none;
+}
+a:hover {
+  color: #08a;
+}
+a:active {
+  color: #a08;
+}
+
+footer {
+  margin-top: 3em;
+  font-size: 12px;
+  color: #778;
+}
+
+
+.meta {
+  font-size: 80%;
+  color: #778;
+}
+
+
+.links {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.links ul {
+  padding: 0;
+}
+.links ul>li {
+  display: inline;
+  margin: 0 0.5em;
+}
+
+
+.item+.item {
+  margin: 1.5em 0 0;
+}
+
+
+.skillset h3 {
+  display: inline-block;
+  margin: 0;
+  width: 7em;
+}
+.skillset ul {
+  display: inline-block;
+  padding: 0;
+  margin: 0 0 0 1em;
+}
+.skillset ul>li {
+  display: inline-block;
+  min-width: 5em;
+  padding: 1px 4px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  margin: 0 0.5em;
+  text-align: center;
+}
+
+
+.position h3::after,.qualification h3::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.position h3>span,.qualification h3>span {
+  display: block;
+  float: left;
+  width: 33.333333%;
+}
+.position h3>span.role,.qualification h3>span.role {
+  text-align: right;
+}
+
+/*
+@media screen {
+
+  body,.links {
+    margin: 0 8px;
+  }
+
+  .links {
+    padding: 4px 0;
+  }
+
+  .print {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  .links .linkback {
+    display: none;
+  }
+
+}
+
+
+@media print {
+*/
+  body {
+    font-size: 10px;
+  }
+
+  h1 {
+    font-size: 16px;
+  }
+  h2 {
+    font-size: 13px;
+  }
+  h3 {
+    font-size: 11px;
+  }
+
+  footer {
+    font-size: 8px;
+  }
+
+  .title {
+    margin-top: 1.625em;
+  }
+
+  .links {
+    font-size: 7px;
+  }
+  .links ul>li {
+    display: block;
+    margin: 0.5em auto;
+  }
+
+  .toc {
+    display: none;
+  }
+/*
+}
+*/
