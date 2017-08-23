@@ -13,9 +13,11 @@ h1,h2,h3 {
 h1 {
   font-size: 22px;
   text-align: center;
+  color: #334;
 }
 h2 {
   font-size: 18px;
+  color: #112;
 }
 h3 {
   font-size: 16px;
@@ -30,7 +32,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #08a;
+  color: #07b;
 }
 a:active {
   color: #a08;
@@ -82,7 +84,7 @@ footer {
   display: inline-block;
   min-width: 5em;
   padding: 1px 4px;
-  border: 1px solid #eee;
+  border: 1px solid #eef;
   border-radius: 4px;
   margin: 0 0.5em;
   text-align: center;
@@ -103,11 +105,16 @@ footer {
   text-align: right;
 }
 
-/*
+
 @media screen {
 
   body,.links {
     margin: 0 8px;
+  }
+
+  section {
+    max-width: 60em;
+    margin: auto;
   }
 
   .links {
@@ -133,7 +140,7 @@ footer {
 
 
 @media print {
-*/
+
   body {
     font-size: 10px;
   }
@@ -167,6 +174,5 @@ footer {
   .toc {
     display: none;
   }
-/*
+
 }
-*/
