@@ -3,6 +3,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 14px;
+  scroll-behavior: smooth;
 }
 
 section,footer {
@@ -187,15 +188,27 @@ a:active {
 
   @media (min-width: 80em) {
 
+    .title {
+      font-size: 42px;
+    }
+
     .links {
       position: fixed;
     }
 
     .toc {
+      opacity: 0;
       position: fixed;
       top: 30vh;
       left: 0;
       border: none;
+    }
+    .toc.in {
+      opacity: 1;
+    }
+    .toc .inview {
+      text-decoration: underline;
+      text-decoration-color: #07b;
     }
 
   }
@@ -243,4 +256,9 @@ a:active {
     display: none;
   }
 
+}
+
+
+.fade {
+  transition: opacity 0.5s ease-in-out;
 }

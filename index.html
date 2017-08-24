@@ -130,7 +130,7 @@
         <p>Committee member at University, built club website, formed Alumni team in 2008 to compete at inaugural alumni tournament in the UK.</p>
       </section>
     </main>
-    <nav class="toc">
+    <nav id="toc" class="toc">
       <ul class="fa-ul">
         <li><a href="#introduction"><i class="fa-li fa fa-caret-right" aria-hidden="true"></i>Joshua Ringer</a></li>
         <li><a href="#summary"><i class="fa-li fa fa-caret-right" aria-hidden="true"></i>Summary</a></li>
@@ -142,5 +142,52 @@
     <footer>
       <p>Updated: Aug 2017</p>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.js" integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      $(function () {
+        $(document).scroll(function () {
+
+          var pos = $(document).scrollTop()
+
+          /*
+           * Highlight ToC menu items when they come into view.
+           */
+          var closest = null
+          $('section').each(function (_, el) {
+            var dist = $(el).offset().top - pos
+            if (
+              // If there is no closest this is closest
+              !closest ||
+              // If this is below top, and next closest is above or this is closer, and in the top third of view pane
+              dist >= 0 && (closest.dist < 0 || dist < closest.dist) && dist < $(window).height() / 3 ||
+              // If this is above top as well as next closest, and this is closer
+              dist < 0 && dist > closest.dist
+            ) {
+              closest = { dist: dist, id: el.id }
+            }
+          })
+          $('.toc a').each(function (_, el) {
+            if (closest && el.hash === '#' + closest.id) {
+              $(el).addClass('inview')
+            } else {
+              $(el).removeClass('inview')
+            }
+          })
+
+          /*
+           * Hide ToC until below introduction section.
+           */
+          var $intro = $('#introduction')
+          var $toc = $('#toc')
+          var toctop = parseFloat($toc.css('top')) + parseFloat($toc.css('margin-top'))
+          if (pos < $intro.offset().top + $intro.height() - toctop) {
+            $toc.removeClass('in')
+          } else {
+            $toc.addClass('fade in')
+          }
+
+        }).scroll()
+      })
+    </script>
   </body>
 </html>
