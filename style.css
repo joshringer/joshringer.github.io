@@ -181,13 +181,18 @@ a:active {
     animation-name: fadein, slidedn;
     animation-duration: 0.25s;
     animation-timing-function: ease-in, ease-out;
-    animation-fill-mode: both;
+    animation-fill-mode: backwards;
+    transition: all 0.25s ease-in-out;
   }
   .cover p {
     max-width: 60em;
     padding: 0 8px;
     margin: 1em auto;
     animation-delay: 0.125s;
+  }
+  .cover .out {
+    opacity: 0;
+    transform: translateY(-1em);
   }
 
   .title {
@@ -232,7 +237,7 @@ a:active {
       left: 0;
       border: none;
       opacity: 0;
-      transition: opacity 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out;
     }
     .toc.in,.toc:hover {
       opacity: 1;
@@ -299,7 +304,7 @@ a:active {
   }
 
   to {
-    transform: translateY(0);
+    transform: none;
   }
 
 }

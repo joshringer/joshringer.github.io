@@ -178,6 +178,15 @@
 
           var pos = $(document).scrollTop()
 
+          $('#introduction').children().each(function (_, el) {
+            var $el = $(el)
+            if (pos + $(window).height() / 5 < $el.offset().top) {
+              $el.removeClass('out')
+            } else {
+              $el.addClass('out')
+            }
+          })
+
           /*
            * Highlight ToC menu items when they come into view.
            */
@@ -209,7 +218,7 @@
           var $intro = $('#introduction')
           var $toc = $('#toc')
           var toctop = parseFloat($toc.css('top')) + parseFloat($toc.css('margin-top'))
-          if (pos < $intro.offset().top + $intro.height() - toctop) {
+          if (pos + toctop < $intro.offset().top + $intro.height()) {
             $toc.removeClass('in')
           } else {
             $toc.addClass('in')
