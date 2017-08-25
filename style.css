@@ -173,17 +173,25 @@ a:active {
   .cover {
     max-width: none;
     width: 100%;
-    min-height: 100vh;
+    min-height: 70vh;
+    padding-top: 30vh;
     margin: 0 -8px 1em;
+  }
+  .cover>* {
+    animation-name: fadein, slidedn;
+    animation-duration: 0.25s;
+    animation-timing-function: ease-in, ease-out;
+    animation-fill-mode: both;
   }
   .cover p {
     max-width: 60em;
     padding: 0 8px;
     margin: 1em auto;
+    animation-delay: 0.125s;
   }
 
   .title {
-    margin: 30vh auto 1em;
+    margin: 1em auto;
     font-size: 2.25rem;
   }
 
@@ -269,4 +277,29 @@ a:active {
   .cols>* {
     margin-bottom: 0;
   }
+}
+
+
+@keyframes fadein {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+@keyframes slidedn {
+
+  from {
+    transform: translateY(-1em);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+
 }
