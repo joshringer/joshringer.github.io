@@ -17,10 +17,10 @@
         <p>Proven leadership in running a team, managing multiple projects, and providing technological guidance across departments.</p>
       </section>
       <aside class="links">
-        <p class="linkback"><a href="https://joshringer.github.io/"><i class="fa fa-globe fa-lg" aria-hidden="true"></i> joshringer.github.io</a></p>
         <ul>
-          <li><a href="https://linkedin.com/in/joshuaringer" target="_blank"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i><span class="print"> https://linkedin.com/in/joshuaringer</span></a></li>
-          <li><a href="https://github.com/joshringer" target="_blank"><i class="fa fa-github fa-lg" aria-hidden="true"></i><span class="print"> https://github.com/joshringer</span></a></li>
+          <li class="print-only"><a href="https://joshringer.github.io/"><i class="fa fa-globe fa-lg" aria-hidden="true"></i> joshringer.github.io</a></li>
+          <li><a href="https://linkedin.com/in/joshuaringer" target="_blank"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i><span class="print-sr"> linkedin.com/in/joshuaringer</span></a></li>
+          <li><a href="https://github.com/joshringer" target="_blank"><i class="fa fa-github fa-lg" aria-hidden="true"></i><span class="print-sr"> github.com/joshringer</span></a></li>
         </ul>
       </aside>
       <section id="skills">
@@ -125,13 +125,13 @@
       </section>
       <section id="ultimate">
         <h2>Ultimate</h2>
-        <p class="meta"><a href="https://youtu.be/KixMbFkrPIM" target="_blank">What is Ultimate?<span class="print"> https://youtu.be/KixMbFkrPIM</span></a></p>
+        <p class="meta"><a href="https://youtu.be/KixMbFkrPIM" target="_blank">What is Ultimate?<span class="print-sr"> youtu.be/KixMbFkrPIM</span></a></p>
         <p>Current IT Director for Singapore&apos;s national association. Competed at World Beach Ultimate Championships 2017 for Singapore national team. Coaching a local club team.</p>
         <p>Regular competitor at multiple tournaments around the world.</p>
         <p>Committee member at University, built club website, formed Alumni team in 2008 to compete at inaugural alumni tournament in the UK.</p>
       </section>
     </main>
-    <nav id="toc" class="toc">
+    <nav id="toc" class="toc no-print">
       <ul class="fa-ul">
         <li><a href="#introduction"><i class="fa-li fa fa-caret-right" aria-hidden="true"></i>Joshua Ringer</a></li>
         <li><a href="#skills"><i class="fa-li fa fa-caret-right" aria-hidden="true"></i>Skills</a></li>
@@ -143,7 +143,10 @@
     <footer>
       <div class="cols">
         <p>Updated: Aug 2017</p>
-        <p class="download"><a href="CV.pdf"><i class="fa fa-download fa-lg" aria-hidden="true"></i><span class="sr-only">Download</span></a></p>
+        <ul class="operations no-print">
+          <li><a onclick="window.print()"><i class="fa fa-print fa-lg" aria-hidden="true"></i><span class="sr-only">Print</span></a></li>
+          <li><a href="CV.pdf"><i class="fa fa-download fa-lg" aria-hidden="true"></i><span class="sr-only">Download</span></a></li>
+        </ul>
       </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.js" integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg=" crossorigin="anonymous"></script>
@@ -187,7 +190,7 @@
           if (pos < $intro.offset().top + $intro.height() - toctop) {
             $toc.removeClass('in')
           } else {
-            $toc.addClass('fade in')
+            $toc.addClass('in')
           }
 
         }).scroll()

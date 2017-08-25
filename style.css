@@ -7,8 +7,11 @@ body {
   scroll-behavior: smooth;
 }
 
-section,footer {
-  padding: 0.5em;
+section,aside,footer {
+  padding: 0.5em 8px;
+}
+section {
+  margin: 1.5em auto;
 }
 footer {
   padding-top: 3em;
@@ -68,7 +71,7 @@ a:active {
   display: flex;
 }
 .cols>* {
-  flex: 1;
+  flex: auto;
 }
 
 
@@ -79,10 +82,7 @@ a:active {
 }
 .links ul {
   padding: 0;
-}
-.links ul>li {
-  display: inline;
-  margin: 0 0.5em;
+  list-style: none;
 }
 
 
@@ -103,7 +103,7 @@ a:active {
   padding: 1px 4px;
   border: 1px solid #eef;
   border-radius: 4px;
-  margin: 1px 0.5em;
+  margin: 1px 8px;
   font-size: 0.875rem;
   text-align: center;
 }
@@ -130,49 +130,14 @@ a:active {
 }
 
 .position+.position,.qualification+.qualification {
-  margin: 1.5em 0 0;
+  margin: 1.5em auto 0;
   padding: 0.5em 0 0;
 }
 
 
 @media screen {
 
-  main {
-    padding-bottom: 1em;
-    background-color: #eee;
-    overflow: hidden;
-  }
-
-  section {
-    max-width: 60em;
-    margin: 1em auto;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px #ccd;
-    background-color: white;
-  }
-
-  .cover {
-    max-width: none;
-    width: 100%;
-    min-height: 100vh;
-    margin: 0 -0.5em 1em;
-  }
-  .cover p {
-    max-width: 60em;
-    padding: 0 0.5em;
-    margin: 1em auto;
-  }
-
-  .title {
-    margin: 30vh auto 1em;
-    font-size: 2.25rem;
-  }
-
-  .links {
-    padding: 4px 0;
-  }
-
-  .print {
+  .print-sr {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -183,8 +148,43 @@ a:active {
     border: 0;
   }
 
-  .links .linkback {
-    display: none;
+  .print-only {
+    display: none !important;
+  }
+
+  main {
+    padding-bottom: 1em;
+    background-color: #eee;
+    overflow: hidden;
+  }
+
+  section {
+    max-width: 60em;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px #ccd;
+    background-color: white;
+  }
+
+  .cover {
+    max-width: none;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 -8px 1em;
+  }
+  .cover p {
+    max-width: 60em;
+    padding: 0 8px;
+    margin: 1em auto;
+  }
+
+  .title {
+    margin: 30vh auto 1em;
+    font-size: 2.25rem;
+  }
+
+  .links ul>li {
+    display: inline;
+    margin-left: 0.5em;
   }
 
   .position+.position,.qualification+.qualification {
@@ -196,8 +196,13 @@ a:active {
     border-top: 1px solid #eef;
   }
 
-  .download {
+  .operations {
+    padding: 0;
     text-align: right;
+  }
+  .operations>li {
+    display: inline;
+    margin-left: 0.5em;
   }
 
   @media (min-width: 80em) {
@@ -211,13 +216,14 @@ a:active {
     }
 
     .toc {
-      opacity: 0;
       position: fixed;
       top: 30vh;
       left: 0;
       border: none;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
     }
-    .toc.in {
+    .toc.in,.toc:hover {
       opacity: 1;
     }
     .toc .inview {
@@ -232,8 +238,16 @@ a:active {
 
 @media print {
 
+  .no-print {
+    display: none !important;
+  }
+
   html {
     font-size: 10px;
+  }
+
+  section,aside,footer {
+    padding: 0;
   }
 
   section>div {
@@ -245,24 +259,11 @@ a:active {
   }
 
   .links {
+    margin-top: -0.5em;
     font-size: 0.75rem;
   }
-  .links ul>li {
-    display: block;
-    margin: 0.5em auto;
+
+  .cols>* {
+    margin-bottom: 0;
   }
-
-  .toc {
-    display: none;
-  }
-
-  .download {
-    display: none;
-  }
-
-}
-
-
-.fade {
-  transition: opacity 0.5s ease-in-out;
 }
