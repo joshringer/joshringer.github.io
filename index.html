@@ -16,11 +16,13 @@
         <p>Proficient in all aspects of software delivery: designing, coding, testing, deployment, server administration, support, and 3rd party service administration.</p>
         <p>Proven leadership in running a team, managing multiple projects, and providing technological guidance across departments.</p>
       </section>
-      <aside class="links">
+      <aside id="contact" class="links l">
+      </aside>
+      <aside id="links" class="links r">
         <ul>
-          <li class="print-only"><a href="https://joshringer.github.io/"><i class="fa fa-globe fa-lg" aria-hidden="true"></i> joshringer.github.io</a></li>
-          <li><a href="https://linkedin.com/in/joshuaringer" target="_blank"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i><span class="print-sr"> linkedin.com/in/joshuaringer</span></a></li>
-          <li><a href="https://github.com/joshringer" target="_blank"><i class="fa fa-github fa-lg" aria-hidden="true"></i><span class="print-sr"> github.com/joshringer</span></a></li>
+          <li class="print-only"><a href="https://joshringer.github.io/" title="joshringer.github.io"><i class="fa fa-globe fa-fw fa-lg" aria-hidden="true"></i> joshringer.github.io</a></li>
+          <li><a href="https://linkedin.com/in/joshuaringer" target="_blank" title="linkedin.com/in/joshuaringer"><i class="fa fa-linkedin fa-fw fa-lg" aria-hidden="true"></i><span class="print-sr"> linkedin.com/in/joshuaringer</span></a></li>
+          <li><a href="https://github.com/joshringer" target="_blank" title="github.com/joshringer"><i class="fa fa-github fa-fw fa-lg" aria-hidden="true"></i><span class="print-sr"> github.com/joshringer</span></a></li>
         </ul>
       </aside>
       <section id="skills">
@@ -144,14 +146,34 @@
       <div class="cols">
         <p>Updated: Aug 2017</p>
         <ul class="operations no-print">
-          <li><a onclick="window.print()"><i class="fa fa-print fa-lg" aria-hidden="true"></i><span class="sr-only">Print</span></a></li>
-          <li><a href="CV.pdf"><i class="fa fa-download fa-lg" aria-hidden="true"></i><span class="sr-only">Download</span></a></li>
+          <li><a href="#" onclick="window.print()" title="Print" aria-label="Print"><i class="fa fa-print fa-fw fa-lg" aria-hidden="true"></i></a></li>
+          <li><a href="CV.pdf" title="Download" aria-label="Download"><i class="fa fa-download fa-fw fa-lg" aria-hidden="true"></i></a></li>
         </ul>
       </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.js" integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript">
       $(function () {
+        /*
+         * Load in private contact info if present.
+         */
+        $.getJSON('contact.json', function (data) {
+          var $cl = $('<ul></ul>')
+          $.each(data, function (_, item) {
+            $cl.append([
+              '<li>',
+              '<a href="', item.href, '" title="', item.text, '">',
+              '<i class="fa fa-', item.icon, ' fa-fw fa-lg" aria-hidden="true"></i>',
+              '<span class="print-sr"> ',
+              item.text,
+              '</span>',
+              '</a>',
+              '</li>'
+            ].join(''))
+          })
+          $cl.appendTo('#contact')
+        })
+
         $(document).scroll(function () {
 
           var pos = $(document).scrollTop()
@@ -182,7 +204,7 @@
           })
 
           /*
-           * Hide ToC until below introduction section.
+           * Show ToC when below introduction section.
            */
           var $intro = $('#introduction')
           var $toc = $('#toc')

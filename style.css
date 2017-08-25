@@ -78,6 +78,11 @@ a:active {
 .links {
   position: absolute;
   top: 0;
+}
+.links.l {
+  left: 0;
+}
+.links.r {
   right: 0;
 }
 .links ul {
@@ -184,7 +189,6 @@ a:active {
 
   .links ul>li {
     display: inline;
-    margin-left: 0.5em;
   }
 
   .position+.position,.qualification+.qualification {
@@ -202,7 +206,6 @@ a:active {
   }
   .operations>li {
     display: inline;
-    margin-left: 0.5em;
   }
 
   @media (min-width: 80em) {
