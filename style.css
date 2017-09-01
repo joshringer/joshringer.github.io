@@ -20,7 +20,10 @@ footer {
   color: #778;
 }
 
-h1,h2,h3 {
+h1,h2,h3,h4,p,ul {
+  margin: 0.5em auto;
+}
+h1,h2,h3,h4 {
   font-weight: 600;
   line-height: 1.25;
 }
@@ -37,8 +40,13 @@ h3 {
   font-size: 1.125rem;
   color: #556;
 }
-h1,h2,h3,p,ul {
-  margin: 0.5em auto;
+h4 {
+  font-size: 1.000030rem;
+  color: #112;
+}
+ul {
+  padding-left: 2em;
+  list-style: '• ' outside;
 }
 
 a {
@@ -283,7 +291,53 @@ a:active {
   }
 }
 
+/***********
+ * Theming *
+ ***********/
+#skills h2 {
+  color: #3a007e;
+}
+#skills h3 {
+  color: #524a69;
+}
+#skills .skillset ul>li {
+  border-color: #d8d0ef;
+}
+#employment h2 {
+  color: #326a04;
+}
+#employment h3 {
+  color: #4c5a4e;
+}
+#employment h4 {
+  color: #19271a;
+}
+#education h2 {
+  color: #00428e;
+}
+#education h3 {
+  color: #4a536b;
+}
+#ultimate h2 {
+  color: #6a3204;
+}
+#ultimate h3 {
+  color: #5a4c4e;
+}
 
+@media screen {
+  #employment .listing+.listing {
+    border-color: #d6dee0;
+  }
+  #education .listing+.listing {
+    border-color: #d0d8f1;
+  }
+}
+
+
+/*
+ * Animations
+ */
 @keyframes fadein {
 
   from {

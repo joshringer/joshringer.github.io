@@ -81,6 +81,12 @@
           <p>Joined company of &lt;20, managed company IT (services such as Office365, Dropbox, network infrastructure), developed company website, e-commerce sites, and internal operational applications.</p>
           <p>With company growth, oversaw purchase &amp; deployment of equipment and infrastructure, as well as outsourcing of some development projects.</p>
           <p>Hired and ran both the IT team and a 3-person development team; provided insight and guidance to business functions.</p>
+          <h4>Projects &amp; Tech</h4>
+          <ul>
+            <li>Custom e-commerce site built on PHP+PrestaShop, deployed on AWS EC2+EB+RDS.</li>
+            <li>Web app, Python+Flask+Swagger backend running trained Keras NN.</li>
+            <li>A number of WordPress, Shopify sites, custom-themed.</li>
+          </ul>
         </div>
         <div class="listing">
           <h3 class="cols">
@@ -92,6 +98,11 @@
           <p>Responsible for developing, maintaining, running, and evaluating automated tests and the test environment, in collaboration with teams in the UK and Norway.</p>
           <p>Contributed toward project test planning; provided guidance on automation activities.</p>
           <p>Coached team members on automation and provided guidance on writing new test scripts and tool usage.</p>
+          <h4>Projects &amp; Tech</h4>
+          <ul>
+            <li>Custom Python test environment, targeting VMware virtualised servers.</li>
+            <li>Large-scale multi-server harness controlling 100&apos;s of endpoints and servers.</li>
+          </ul>
         </div>
         <div class="listing">
           <h3 class="cols">
@@ -100,8 +111,15 @@
             <span class="role">Test Tools Team Lead</span>
           </h3>
           <p>Led a small team responsible for developing and maintaining test tools and services for a campus of ~200, providing test coverage for all telepresence infrastructure products developed by the group.</p>
-          <p>In charge of designing and providing direction for all of the team’s projects, including various web services, a large distributed automation system, and a video endpoint simulator, all developed in-house.</p>
+          <p>In charge of designing and providing direction for all of the team&apos;s projects, including various web services, a large distributed automation system, and a video endpoint simulator, all developed in-house.</p>
           <p>Responsible for prioritising any user requests and issues, providing (or redirecting) any support required. Proud supplier of team beanbags, essential seating for productive and innovative team discussions.</p>
+          <h4>Projects &amp; Tech</h4>
+          <ul>
+            <li>Custom Python test environment, product control libraries.</li>
+            <li>Jenkins CI orchestration, distributed automation system.</li>
+            <li>C++/Python wrapper simulated SIP endpoint.</li>
+            <li>Python+Django test management website.</li>
+          </ul>
         </div>
         <div class="listing">
           <h3 class="cols">
@@ -111,6 +129,11 @@
           </h3>
           <p>Developed and maintained the group&apos;s test automation framework, along with main test and result-tracking website, and provided support for both.</p>
           <p>Mentored other test team members in script-writing and use of the framework.</p>
+          <h4>Projects &amp; Tech</h4>
+          <ul>
+            <li>Custom Python test engine+framework, hand-written scripts.</li>
+            <li>PHP result tracking website.</li>
+          </ul>
         </div>
       </section>
       <section id="education">
@@ -204,7 +227,7 @@
               closest = { dist: dist, id: el.id }
             }
           })
-          $('.toc a').each(function (_, el) {
+          $('#toc a').each(function (_, el) {
             if (closest && el.hash === '#' + closest.id) {
               $(el).addClass('inview')
             } else {
