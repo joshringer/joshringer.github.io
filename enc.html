@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Contact details</title>
+    <style>
+      #msg,#pwd,#out,#err {
+        display: block;
+        width: 64em;
+        margin: 1em auto;
+        word-wrap: break-word;
+        font: 10pt monospace;
+      }
+      #msg,#pwd,#out {
+        border: thin solid grey;
+      }
+      #err {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="encform">
+      <textarea id="msg" name="msg" rows="10" placeholder="code"></textarea>
+      <input id="pwd" name="pwd" placeholder="secret">
+    </form>
+    <p id="out"></p>
+    <p id="err"></p>
+    <script type="text/javascript">
+    const crypto = window.crypto
+    const te = new TextEncoder()
+
+    const alg = {
+      name: 'AES-CBC',
+      iv: te.encode('mycontactdetails')
+    }
+
+    function hexdecode (ba) {
+      var ia = new Uint8Array(ba)
+      var ha = Array.map(ia, (i) => i.toString(16).padStart(2, '0'))
+      var lines = []
+      for (let h = 0; h < ha.length; h += 32) {
+        lines.push(ha.slice(h, h + 32).join(''))
+      }
+      return lines.join('\n')
+    }
+
+    function doEncode() {
+      var msg = te.encode(document.getElementById('msg').value)
+      var pwd = te.encode(document.getElementById('pwd').value)
+
+      crypto.subtle.digest('SHA-256', pwd)
+      .then(function (hsh) {
+        return crypto.subtle.importKey('raw', hsh, alg, false, ['encrypt'])
+      }).then(function (key) {
+        return crypto.subtle.encrypt(alg, key, msg)
+      }).then(function (out) {
+        document.getElementById('out').innerText = hexdecode(out)
+      }).catch(function (exc) {
+        console.error(exc)
+        document.getElementById('err').innerText = exc
+      })
+    }
+
+    document.getElementById('msg').addEventListener('input', doEncode)
+    document.getElementById('pwd').addEventListener('input', doEncode)
+    document.getElementById('encform').addEventListener('submit', function (event) {
+      event.preventDefault()
+      doEncode()
+    })
+    </script>
+  </body>
+</html>

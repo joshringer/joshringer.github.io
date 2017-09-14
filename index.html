@@ -17,6 +17,67 @@
         <p>Proven leadership in running a team, managing multiple projects, and providing technological guidance across departments.</p>
       </section>
       <aside id="contact" class="links l">
+        <script type="text/javascript">
+        (function () {
+          const crypto = window.crypto
+          const te = new TextEncoder()
+          const td = new TextDecoder()
+
+          const data = (
+            'b4afeac2f8f9d0219e51ccd3bb4b9d8341690e30f36ce569d78e3c0f5229814b' +
+            '0819ea77d90cd805145481b5852460fa6215fe4de9e19f2164b87178d5939e4e' +
+            '866c83a71744007e35f288f34a0b3af491cd92350b52fc8ec06e442c867a567e' +
+            'd7b8f1d66761d24be903baed75f71b32c054056fb79fe6cffc23c60c2db0888d' +
+            'c59e2eef76a00168174bdd03690cd101976a2ebe03da933a1276718f9c47e758' +
+            '1c561d76d76d822341cb991eb5fe484e02bcdda0e877ed74ad516499854b4513' +
+            'b9d724699cd29feaa7232db9935a93a1444c37edf7e41c477e82df0dcaaeb761' +
+            '8a04af5bb41cae64416ab91426c68d223659a3f421904dedb96f2f5b9de38006' +
+            'baaf6dd6909edbc492da1074a168cac82d8ec8acc4d222978b27c0388e6ed0df' +
+            '83f9c71649027157736ad601be0466f669ce1420fd474602f62bf68195c672e1' +
+            '5939d819938b1f71a5c996d111a1353fef759592839e7380317696021c53d004' +
+            'cdf989ec95f8bb56ed24603d2609ed4c8fcd981506b76fdf68bb6fe6b6cdd227' +
+            'fe88fbf7bd602258f604c218a2b7c51c83900b4f558f5ca2ebb3b66ff050d7b9' +
+            '3a7c2372af1aa2c20f8fee2f8e2b29d1b86827c6dfe5cff4e1ad5111fab35a36' +
+            'c6901cf4c1c4e0059a8c9d5307b290f07e16180da74a313129ff3e251f7b94b3' +
+            'faf5629dae9cbf88ff64a3e51405eb1b3d86c139a226a6a86d740564454b3b89' +
+            'c907b8894a4006d64c96007c6136c4b4b298a33a98dd415a8f54d847527f239f' +
+            'b829154e4531701368da55d04fcc056338d94e5b33f1607e6509782203cf1712' +
+            '585277a67a9651a1b7e8b9e9e832ef4f8956dcbf97d6eb6ce414bec58ccaa199' +
+            'af806b6226f698a96c535ad582e1cb303ef231fc94b490c47828d0ccf7556b09' +
+            '1f3511c4f9f3e4dd653c1032a6e6f807ecfac9645d37762e7e688d78b776351c' +
+            '57f9c6b9b0b9b06d1e1faf1d1ec6a6214903b61f1cdf83b2d903b77d6a814d1e' +
+            '5021ba37ff3ac84586cce27cd346d6d0b2858d476fbbef48380d2df67ced8930'
+          )
+          const alg = {
+            name: 'AES-CBC',
+            iv: te.encode('mycontactdetails')
+          }
+
+          var dat = []
+          for (let i = 0; i < data.length; i += 2) {
+            dat.push(parseInt(data.slice(i, i + 2), 16))
+          }
+          dat = new Uint8Array(dat)
+
+          /*
+           * Load private contact info, if key present.
+           */
+          var pwd = te.encode(window.location.search.slice(1))
+          if (pwd) {
+            crypto.subtle.digest('SHA-256', pwd)
+            .then(function (hsh) {
+              return crypto.subtle.importKey('raw', hsh, alg, false, ['decrypt'])
+            }).then(function (key) {
+              return crypto.subtle.decrypt(alg, key, dat)
+            }).then(function (out) {
+              console.log(out)
+              document.getElementById('contact').innerHTML = td.decode(out)
+            // }).catch(function (exc) {
+            //   console.error(exc)
+            })
+          }
+        })()
+        </script>
       </aside>
       <aside id="links" class="links r">
         <ul>
@@ -167,7 +228,7 @@
     </nav>
     <footer>
       <div class="cols">
-        <p>Updated: Aug 2017</p>
+        <p>Updated: Sep 2017</p>
         <ul id="actions" class="no-print">
           <li><a href="#" onclick="window.print()" title="Print" aria-label="Print"><i class="fa fa-print fa-fw fa-lg" aria-hidden="true"></i></a></li>
           <li><a href="CV.pdf" title="Download" aria-label="Download"><i class="fa fa-download fa-fw fa-lg" aria-hidden="true"></i></a></li>
@@ -176,79 +237,62 @@
     </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript">
-      $(function () {
+    $(function () {
+      $(document).scroll(function () {
+
+        var pos = $(document).scrollTop()
+
         /*
-         * Load in private contact info if present.
+         * Fade out/in intro text.
          */
-        $.getJSON('contact.json', function (data) {
-          var $cl = $('<ul></ul>')
-          $.each(data, function (_, item) {
-            $cl.append([
-              '<li>',
-              '<a href="', item.href, '" title="', item.text, '">',
-              '<i class="fa fa-', item.icon, ' fa-fw fa-lg" aria-hidden="true"></i>',
-              '<span class="print-sr"> ',
-              item.text,
-              '</span>',
-              '</a>',
-              '</li>'
-            ].join(''))
-          })
-          $cl.appendTo('#contact')
+        $('#introduction').children().each(function (_, el) {
+          var $el = $(el)
+          if (pos + $(window).height() / 5 < $el.offset().top) {
+            $el.removeClass('out')
+          } else {
+            $el.addClass('out')
+          }
         })
 
-        $(document).scroll(function () {
-
-          var pos = $(document).scrollTop()
-
-          $('#introduction').children().each(function (_, el) {
-            var $el = $(el)
-            if (pos + $(window).height() / 5 < $el.offset().top) {
-              $el.removeClass('out')
-            } else {
-              $el.addClass('out')
-            }
-          })
-
-          /*
-           * Highlight ToC menu items when they come into view.
-           */
-          var closest = null
-          $('section').each(function (_, el) {
-            var dist = $(el).offset().top - pos
-            if (
-              // If there is no closest this is closest
-              !closest ||
-              // If this is below top, and next closest is above or this is closer, and in the top third of view pane
-              dist >= 0 && (closest.dist < 0 || dist < closest.dist) && dist < $(window).height() / 3 ||
-              // If this is above top as well as next closest, and this is closer
-              dist < 0 && dist > closest.dist
-            ) {
-              closest = { dist: dist, id: el.id }
-            }
-          })
-          $('#toc a').each(function (_, el) {
-            if (closest && el.hash === '#' + closest.id) {
-              $(el).addClass('inview')
-            } else {
-              $(el).removeClass('inview')
-            }
-          })
-
-          /*
-           * Show ToC when below introduction section.
-           */
-          var $intro = $('#introduction')
-          var $toc = $('#toc')
-          var toctop = parseFloat($toc.css('top')) + parseFloat($toc.css('margin-top'))
-          if (pos + toctop < $intro.offset().top + $intro.height()) {
-            $toc.removeClass('in')
-          } else {
-            $toc.addClass('in')
+        /*
+         * Highlight ToC menu items when they come into view.
+         */
+        var closest = null
+        $('section').each(function (_, el) {
+          var dist = $(el).offset().top - pos
+          if (
+            // If there is no closest this is closest
+            !closest ||
+            // If this is below top, and next closest is above or this is closer, and in the top third of view pane
+            dist >= 0 && (closest.dist < 0 || dist < closest.dist) && dist < $(window).height() / 3 ||
+            // If this is above top as well as next closest, and this is closer
+            dist < 0 && dist > closest.dist
+          ) {
+            closest = { dist: dist, id: el.id }
           }
+        })
+        $('#toc a').each(function (_, el) {
+          if (closest && el.hash === '#' + closest.id) {
+            $(el).addClass('inview')
+          } else {
+            $(el).removeClass('inview')
+          }
+        })
 
-        }).scroll()
-      })
+        /*
+         * Show ToC when below introduction section.
+         */
+        var $intro = $('#introduction')
+        var $toc = $('#toc')
+        var toctop = parseFloat($toc.css('top')) + parseFloat($toc.css('margin-top'))
+        if (pos + toctop < $intro.offset().top + $intro.height()) {
+          $toc.removeClass('in')
+        } else {
+          $toc.addClass('in')
+        }
+
+      }).scroll()
+    })
     </script>
   </body>
 </html>
