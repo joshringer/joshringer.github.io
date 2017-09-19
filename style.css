@@ -176,6 +176,19 @@ a:active {
     background-color: white;
   }
 
+  .flag-sg::after,.flag-us::after {
+    position: absolute;
+    margin: -3px -8.5px;
+    z-index: -1;
+    font-size: 8px;
+  }
+  .flag-sg::after {
+    content: "🇸🇬";
+  }
+  .flag-us::after {
+    content: "🇺🇸";
+  }
+
   #introduction {
     max-width: none;
     width: 100%;
