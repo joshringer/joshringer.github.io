@@ -21,7 +21,7 @@ footer {
 }
 
 h1,h2,h3,h4,p,ul {
-  margin: 0.5em auto;
+  margin: 0.75ex auto 0.5ex;
 }
 h1,h2,h3,h4 {
   font-weight: 600;
@@ -116,7 +116,7 @@ a:active {
 }
 .skillset ul>li {
   display: inline-block;
-  min-width: 5em;
+  min-width: 6em;
   padding: 1px 4px;
   border: thin solid #eef;
   border-radius: 4px;
